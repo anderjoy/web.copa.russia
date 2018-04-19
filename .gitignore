@@ -1,1 +1,7 @@
 /.vs/**/*.*
+**/Api/bin/
+**/Api/obj/
+**/Models/bin/
+**/Models/obj/
+**/WebSite/bin/
+**/WebSite/obj/
