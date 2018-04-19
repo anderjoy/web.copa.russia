@@ -1,0 +1,71 @@
+﻿@model Models.Jogador
+
+@{
+    ViewData["Title"] = "Novo jogador";
+}
+
+<h2>Novo jogador</h2>
+
+<hr />
+
+<div>
+    <div class="row">
+        <div class="col-md-8 col-xs-12">
+            <form asp-action="NewPlayer">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input id="TimeId" name="TimeId" hidden value="@ViewBag.TimeId" />
+
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Ficha.Naturalidade" class="control-label"></label>
+                    <input asp-for="Ficha.Naturalidade" class="form-control" />
+                    <span asp-validation-for="Ficha.Naturalidade" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Ficha.Posicao" class="control-label"></label>
+                    <input asp-for="Ficha.Posicao" class="form-control" placeholder="Atacante" />
+                    <span asp-validation-for="Ficha.Posicao" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Ficha.Camisa" class="control-label"></label>
+                    <input asp-for="Ficha.Camisa" class="form-control" type="text" />
+                    <span asp-validation-for="Ficha.Camisa" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Ficha.Altura" class="control-label"></label>
+                    <input asp-for="Ficha.Altura" data-val="true" class="form-control" type="text" placeholder="1.73" />
+                    <span asp-validation-for="Ficha.Altura" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Criar" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+
+        @if (!ViewBag.IsMobile)
+        {
+            <div class="col-md-4">
+                <image file="@ViewBag.Bandeira" class="img-responsive visible-md visible-lg"></image>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="text-left">
+            <a asp-action="Detail" asp-controller="Home" asp-route-id="@ViewBag.TimeId">Voltar</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

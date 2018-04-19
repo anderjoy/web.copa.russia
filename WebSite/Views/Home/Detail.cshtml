@@ -1,0 +1,83 @@
+﻿@using Models
+@model Models.Time
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<div>
+
+    <div class="row">
+
+        <h2>@Model.Pais</h2>
+
+        <div class="col-md-8 col-xs-12">
+            <div class="row">
+                <div class="form-group">
+                    <label asp-for="NMTecnico" class="control-label"></label>
+                    <input asp-for="NMTecnico" class="form-control" readonly />
+                </div>
+            </div>
+
+            <h3>Jogadores</h3>
+            <hr />
+
+            <table class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th class="visible-md visible-lg visible-sm">Naturalidade</th>
+                        <th>Posição</th>
+                        <th>Camisa</th>
+                        <th class="visible-md visible-lg visible-sm">Altura</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Jogadores != null)
+                    {
+                        @for (int i = 0; i < Model.Jogadores.ToList().Count(); i++)
+                        {
+                            <tr>
+
+                                @{
+                                    Jogador jogador = Model.Jogadores.ToList()[i];
+                                }
+
+                                <td>@jogador.Nome</td>
+
+                                @if (jogador.Ficha != null)
+                                {
+                                    <td  class="visible-md visible-lg visible-sm">@jogador.Ficha.Naturalidade</td>
+                                    <td>@jogador.Ficha.Posicao</td>
+                                    <td>@jogador.Ficha.Camisa</td>
+                                    <td  class="visible-md visible-lg visible-sm">@jogador.Ficha.Altura</td>
+                                    <td>
+                                        <a asp-controller="Player" asp-action="Delete" asp-route-id="@jogador.Id" asp-route-timeid="@Model.Id">Apagar</a> |
+                                        <a asp-controller="Player" asp-action="Editar" asp-route-id="@jogador.Id">Editar</a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+            <a asp-action="NewPlayer" asp-controller="Player" asp-route-id="@Model.Id" style="float: right">Adicionar jogador</a>
+
+        </div>
+
+        @if (!ViewBag.IsMobile)
+        {
+            <div class="col-md-4">
+                <image file="@Model.Bandeira" class="img-responsive visible-md visible-lg"></image>
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="text-left">
+            <a asp-action="Index">Voltar</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model List<Models.Gol>
+
+@{
+    ViewData["Title"] = "Gols";
+}
+
+<h2>Gols - @ViewBag.Time1 (@ViewBag.TotalGolTime1) vs @ViewBag.Time2 (@ViewBag.TotalGolTime2)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Time
+            </th>
+            <th>
+                Jogador
+            </th>
+            <th>
+                Hora
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Model[i].Time.Pais
+                </td>
+                <td>
+                    @Model[i].Jogador.Nome
+                </td>
+                <td>
+                    @Model[i].Hora
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="NewGoal" asp-route-id="@ViewBag.GameID" style="float: right">GOLLLLLLLLLLLLLLLLLL</a>

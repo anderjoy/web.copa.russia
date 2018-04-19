@@ -1,0 +1,48 @@
+﻿@model List<Models.Jogo>
+
+@{
+    ViewData["Title"] = "Jogos";
+}
+
+<h2>Jogos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label asp-for="FirstOrDefault().Time1"></label>
+            </th>
+            <th>
+                <label asp-for="FirstOrDefault().Time2"></label>
+            </th>
+            <th>
+                <label asp-for="FirstOrDefault().Data"></label>
+            </th>
+            <th>
+                Ação
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Model[i].Time_1.Pais
+                </td>
+                <td>
+                    @Model[i].Time_2.Pais
+                </td>
+                <td>
+                    @Model[i].Data
+                </td>
+                <td>
+                    <a asp-controller="Goal" asp-action="Index" asp-route-id="@Model[i].Id">Gols</a> |
+                    <a asp-controller="Game" asp-action="Edit" asp-route-id="@Model[i].Id">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="NewGame" style="float: right">Adicionar Jogo</a>

@@ -1,0 +1,37 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/russia.bundle.css",
+    "inputFiles": [      
+      "wwwroot/css/jquery-confirm.min.css",
+      "wwwroot/css/notify-customize.css",
+      "wwwroot/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/russia.bundle.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/dist/jquery.js",
+      "wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "wwwroot/js/site.js",
+      "wwwroot/js/bootstrap-notify.min.js",
+      "wwwroot/js/jquery-confirm.min.js",
+      "wwwroot/js/signalr.min.js"
+    ]
+  }
+]

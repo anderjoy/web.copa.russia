@@ -1,0 +1,69 @@
+﻿@model WebSite.ViewModel.NewGoal
+
+@{
+    ViewData["Title"] = "Novo Gol";
+}
+
+<h2>Novo Gol</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NewGoal">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input value="@ViewBag.GameID" id="gameId" name="gameId" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="Time" class="control-label"></label>
+                <select asp-for="Time" asp-items="Model.Times" class="form-control time"></select>
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Jogador" class="control-label"></label>
+                <select asp-for="Jogador" class="form-control jogador"></select>
+                <span asp-validation-for="Jogador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hora" class="control-label"></label>
+                <input asp-for="Hora" class="form-control" placeholder="hh:nn:ss" />
+                <span asp-validation-for="Hora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".time").change();
+        });
+    </script>
+
+    <script>
+    $(".time").change(function () {
+        var timeid = $(this).val();
+
+        $.getJSON("@Url.Action("Jogadores", "Goal")", { timeId: timeid }, function (result) {
+
+            var jogadores = $(".jogador");
+            jogadores.empty();
+
+            $.each(result, function () {
+
+                jogadores.append($("<option />").val(this.id).text(this.nome));
+
+            });
+        });
+    });
+    </script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
