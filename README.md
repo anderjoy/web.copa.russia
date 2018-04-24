@@ -1,7 +1,11 @@
 # web.copa.russia
 Projeto da copa do mundo - Russia - FIAP
 
-Foi utilizado o Swagger para documentar a API: http://{URL_API}/swagger/
+URL da aplicação WEB: http://localhost:65051/
+
+URL da API: http://localhost:65070/
+
+Foi utilizado o Swagger para documentar a API: http://localhost:65070/swagger/
 
 Usuário da web: anderson
 
